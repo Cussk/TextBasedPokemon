@@ -5,6 +5,7 @@ void ChoosePokemonText();
 void ChoosePokemon(int player_choice);
 void GetFirstPokemon(int player_choice);
 std::string player_name;
+std::string chosen_pokemon;
 int first_pokemon_choice;
 
 int main(int argc, char* argv[])
@@ -46,17 +47,21 @@ void GetFirstPokemon(int player_choice)
     switch (player_choice)
     {
         case 1:
+            chosen_pokemon = "Bulbasaur";
             std::cout << "You chose Bulbasaur! A wise choice.\n";
             break;
         case 2:
+            chosen_pokemon = "Charmander";
             std::cout << "You chose Charmander! A fiery choice.\n";
             break;
         case 3:
+            chosen_pokemon = "Squirtle";
             std::cout << "You chose Squirtle! A cool choice.\n";
             break;
         default:
-            std::cout << "Please enter a valid choice.\n";
-            ChoosePokemon();
+            chosen_pokemon = "Pikachu";
+            std::cout << "Invalid choice... ERROR, ERROR... Electrical overload... Take this rat...\n";
+            std::cout << "You received Pikachu! Things are going to get charged up!\n";
             break;
     }
 
