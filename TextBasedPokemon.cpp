@@ -1,17 +1,29 @@
 #include <iostream>
 
+enum PokemonChoice
+{
+    InvalidChoice,
+    Bulbasaur,
+    Charmander,
+    Squirtle,
+    Pikachu
+};
+
 void EnterName();
 void ChoosePokemonText();
 void ChoosePokemon(int player_choice);
 void GetFirstPokemon(int player_choice);
+void PostChoiceStory();
+std::string PokemonChoiceToString(PokemonChoice choice);
 std::string player_name;
-std::string chosen_pokemon;
+PokemonChoice chosen_pokemon = InvalidChoice;
 int first_pokemon_choice;
 
 int main(int argc, char* argv[])
 {
     EnterName();
     ChoosePokemonText();
+    PostChoiceStory();
     
     return 0;
 }
@@ -47,22 +59,39 @@ void GetFirstPokemon(int player_choice)
     switch (player_choice)
     {
         case 1:
-            chosen_pokemon = "Bulbasaur";
+            chosen_pokemon = Bulbasaur;
             std::cout << "You chose Bulbasaur! A wise choice.\n";
             break;
         case 2:
-            chosen_pokemon = "Charmander";
+            chosen_pokemon = Charmander;
             std::cout << "You chose Charmander! A fiery choice.\n";
             break;
         case 3:
-            chosen_pokemon = "Squirtle";
+            chosen_pokemon = Squirtle;
             std::cout << "You chose Squirtle! A cool choice.\n";
             break;
         default:
-            chosen_pokemon = "Pikachu";
+            chosen_pokemon = Pikachu;
             std::cout << "Invalid choice... ERROR, ERROR... Electrical overload... Take this rat...\n";
             std::cout << "You received Pikachu! Things are going to get charged up!\n";
             break;
     }
+}
 
+void PostChoiceStory()
+{
+    std::string pokemon_name = PokemonChoiceToString(chosen_pokemon);
+    std::cout << "Congratulations!! You got you first Pokemon.\n";
+    std::cout << "I look forward to hearing all the great things " << player_name << " and " << pokemon_name << " do in this world.\n";
+}
+
+std::string PokemonChoiceToString(PokemonChoice choice) {
+    switch (choice) {
+    case InvalidChoice: return "Invalid Choice";
+    case Bulbasaur:     return "Bulbasaur";
+    case Charmander:    return "Charmander";
+    case Squirtle:      return "Squirtle";
+    case Pikachu:       return "Pikachu";
+    default:            return "Unknown";
+    }
 }
